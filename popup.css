@@ -1,0 +1,302 @@
+/* Estilo de janela clássica do Windows 95/98 */
+
+:root {
+  --face: #c0c0c0;
+  --light: #dfdfdf;
+  --highlight: #ffffff;
+  --shadow: #808080;
+  --dark: #0a0a0a;
+  --title-from: #000080;
+  --title-to: #1084d0;
+  --text: #000000;
+  --error: #a00000;
+  --ok: #006400;
+
+  /* Relevo para fora (botões, janela) */
+  --raised: inset -1px -1px var(--dark), inset 1px 1px var(--highlight),
+    inset -2px -2px var(--shadow), inset 2px 2px var(--light);
+  /* Relevo para dentro (campos, botão pressionado) */
+  --sunken: inset -1px -1px var(--highlight), inset 1px 1px var(--shadow),
+    inset -2px -2px var(--light), inset 2px 2px var(--dark);
+  /* Afundado simples (barra de status) */
+  --sunken-thin: inset -1px -1px var(--highlight), inset 1px 1px var(--shadow);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 440px;
+  height: 600px;
+  margin: 0;
+  padding: 0;
+  background: var(--face);
+  color: var(--text);
+  font: 12px/1.35 Tahoma, "MS Sans Serif", "Segoe UI", sans-serif;
+}
+
+/* Janela */
+
+.window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 3px;
+  background: var(--face);
+  box-shadow: var(--raised);
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 3px 3px 5px;
+  background: linear-gradient(90deg, var(--title-from), var(--title-to));
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.title-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.title-btn {
+  width: 18px;
+  min-width: 0;
+  height: 16px;
+  padding: 0;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.window-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  gap: 8px;
+  padding: 8px 6px;
+}
+
+/* Controles */
+
+button {
+  min-width: 75px;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 0;
+  background: var(--face);
+  box-shadow: var(--raised);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+button:active {
+  box-shadow: var(--sunken);
+  padding: 5px 9px 3px 11px;
+}
+
+button:focus-visible {
+  outline: 1px dotted var(--dark);
+  outline-offset: -5px;
+}
+
+button.danger {
+  color: var(--error);
+}
+
+.field {
+  width: 100%;
+  padding: 4px 6px;
+  border: none;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow: var(--sunken);
+  color: var(--text);
+  font: inherit;
+}
+
+.field:focus {
+  outline: none;
+}
+
+textarea.field {
+  resize: vertical;
+  font-family: "Courier New", Courier, monospace;
+}
+
+input[type="checkbox"] {
+  margin: 0;
+}
+
+/* Barra de endereço e ferramentas */
+
+.address {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.address-label {
+  flex-shrink: 0;
+}
+
+.address-field {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.toolbar {
+  display: flex;
+  gap: 6px;
+}
+
+/* Grupos recolhíveis */
+
+details {
+  border: 1px solid var(--shadow);
+  box-shadow: 1px 1px 0 var(--highlight), inset 1px 1px 0 var(--highlight);
+}
+
+summary {
+  padding: 4px 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+summary:focus-visible {
+  outline: 1px dotted var(--dark);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 2px 8px 8px;
+}
+
+.panel button {
+  align-self: flex-start;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Lista de itens */
+
+.list {
+  flex: 1;
+  min-height: 60px;
+  margin: 0;
+  padding: 4px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.item {
+  padding: 6px 4px 8px;
+  border-bottom: 1px dotted var(--shadow);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item-key {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+.item-key::before {
+  content: "";
+  flex-shrink: 0;
+  width: 14px;
+  height: 11px;
+  background: #f5d76e;
+  border: 1px solid #a68a1f;
+  border-radius: 1px 3px 1px 1px;
+}
+
+.item-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.item-actions button {
+  min-width: 0;
+}
+
+.empty {
+  padding: 24px 0;
+  color: var(--shadow);
+  text-align: center;
+}
+
+/* Barra de status */
+
+.status-bar {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.status-cell {
+  padding: 2px 6px;
+  box-shadow: var(--sunken-thin);
+  min-height: 20px;
+}
+
+.status {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.status.ok {
+  color: var(--ok);
+}
+
+.status.error {
+  color: var(--error);
+}
+
+.count {
+  flex-shrink: 0;
+  min-width: 90px;
+  text-align: right;
+}
+
+/* Barras de rolagem */
+
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: repeating-conic-gradient(var(--face) 0 25%, var(--highlight) 0 50%) 0 0 / 2px 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--face);
+  box-shadow: var(--raised);
+}
+
+::-webkit-scrollbar-button:single-button {
+  display: block;
+  height: 16px;
+  background: var(--face);
+  box-shadow: var(--raised);
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>LocalStorage Manager</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="window">
+    <div class="title-bar">
+      <span class="title-text">LocalStorage Manager</span>
+      <button id="btn-close" class="title-btn" type="button" aria-label="Fechar">✕</button>
+    </div>
+
+    <div class="window-body">
+      <div class="address">
+        <span class="address-label">Endereço:</span>
+        <div id="origin" class="field address-field">—</div>
+      </div>
+
+      <div class="toolbar">
+        <button id="btn-copy" type="button">Copiar localStorage</button>
+        <button id="btn-refresh" type="button">Atualizar</button>
+        <button id="btn-clear" class="danger" type="button">Limpar</button>
+      </div>
+
+      <details open>
+        <summary>Importar localStorage</summary>
+        <div class="panel">
+          <textarea id="import-text" class="field" rows="5" placeholder='Cole o JSON aqui, ex.: {"chave": "valor"}'></textarea>
+          <label class="check">
+            <input id="import-clear" type="checkbox">
+            Limpar o localStorage antes de importar
+          </label>
+          <button id="btn-import" type="button">Importar</button>
+        </div>
+      </details>
+
+      <details>
+        <summary>Adicionar item</summary>
+        <form id="form-add" class="panel">
+          <input id="add-key" class="field" type="text" placeholder="Chave" required autocomplete="off">
+          <textarea id="add-value" class="field" rows="3" placeholder="Valor"></textarea>
+          <button type="submit">Salvar</button>
+        </form>
+      </details>
+
+      <div class="search">
+        <input id="filter" class="field" type="search" placeholder="Filtrar por chave ou valor" autocomplete="off">
+      </div>
+
+      <ul id="list" class="list field"></ul>
+    </div>
+
+    <div class="status-bar">
+      <div id="status" class="status-cell status" role="status">Pronto.</div>
+      <div id="count" class="status-cell count"></div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
